@@ -1,0 +1,177 @@
+.students-page {
+  min-height: 100vh;
+
+  background: #f4eddb;
+  color: #191715;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page-header {
+  min-height: 150px;
+
+  padding: 35px 55px;
+
+  border-bottom: 1px solid #29251f;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eyebrow,
+.course-badge,
+.panel-header small,
+.student-number,
+.student-role {
+  font-family: "Courier New", monospace;
+
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.eyebrow {
+  font-size: 10px;
+
+  color: #766d60;
+
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin: 0;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 58px;
+  font-weight: 400;
+}
+
+.course-badge {
+  border: 1px solid #29251f;
+
+  padding: 12px;
+
+  font-size: 9px;
+}
+
+.error {
+  margin: 20px 28px;
+
+  padding: 14px;
+
+  border: 1px solid #8f2029;
+
+  color: #8f2029;
+
+  font-family: "Courier New", monospace;
+
+  font-size: 11px;
+}
+
+.content {
+  padding: 28px;
+}
+
+.roster-panel {
+  border: 1px solid #29251f;
+}
+
+.panel-header {
+  height: 55px;
+
+  border-bottom: 1px solid #29251f;
+
+  padding: 0 22px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 21px;
+}
+
+.panel-header i {
+  display: inline-block;
+
+  width: 11px;
+  height: 11px;
+
+  background: #4b7044;
+
+  margin-right: 10px;
+}
+
+.panel-header small {
+  font-size: 9px;
+
+  color: #756c60;
+}
+
+.student {
+  min-height: 85px;
+
+  padding: 15px 25px;
+
+  border-bottom: 1px solid #c7bdab;
+
+  display: flex;
+  align-items: center;
+
+  gap: 25px;
+}
+
+.student-number {
+  width: 45px;
+
+  color: #8f2029;
+
+  font-size: 10px;
+}
+
+.student-details {
+  flex: 1;
+}
+
+.student-details h2 {
+  margin: 0 0 6px;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: 19px;
+
+  font-weight: 400;
+}
+
+.student-details span {
+  color: #756c60;
+
+  font-size: 12px;
+}
+
+.student-role {
+  font-size: 9px;
+
+  border: 1px solid #4b7044;
+
+  padding: 7px 9px;
+
+  color: #4b7044;
+}
+
+.loading,
+.empty {
+  padding: 60px;
+
+  text-align: center;
+
+  font-family: "Courier New", monospace;
+
+  letter-spacing: 1.5px;
+
+  font-size: 10px;
+
+  color: #756c60;
+}

@@ -1,0 +1,351 @@
+<div class="register-page">
+
+  <div class="register-card">
+<!-- Custom Error Popup -->
+<div
+  class="popup-overlay"
+  *ngIf="popupMessage"
+  (click)="closePopup()"
+>
+  <div
+    class="popup-box"
+    (click)="$event.stopPropagation()"
+  >
+
+    <div class="popup-icon">
+      !
+    </div>
+
+    <div class="popup-content">
+      <div class="popup-label">
+        REGISTRATION ERROR
+      </div>
+
+      <div class="popup-message">
+        {{ popupMessage }}
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="popup-close"
+      (click)="closePopup()"
+    >
+      ×
+    </button>
+
+  </div>
+</div>
+    <!-- Logo Header -->
+    <div class="logo">
+
+      <div class="logo-mark">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="logo-text">
+        <span class="brand-name">Quad</span>
+        <span class="brand-sub">COLLEGE / NETWORK</span>
+      </div>
+
+    </div>
+
+
+    <!-- Main Heading -->
+    <div class="card-header">
+
+      <h1>Create your account</h1>
+
+      <p class="subtitle">
+        Join your campus network
+      </p>
+
+    </div>
+
+
+    <!-- Success Message -->
+    <div
+      class="success-message"
+      *ngIf="successMessage"
+    >
+      ■ {{ successMessage }}
+    </div>
+
+
+    <!-- Backend Error -->
+    <div
+      class="server-error"
+      *ngIf="errorMessage"
+    >
+      ■ {{ errorMessage }}
+    </div>
+
+
+    <!-- Registration Form -->
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="register()"
+    >
+
+      <!-- Full Name -->
+      <div class="form-group">
+
+        <label for="fullName">
+          FULL NAME
+        </label>
+
+        <input
+          id="fullName"
+          type="text"
+          formControlName="fullName"
+          placeholder="e.g. Apoorva Rao"
+        />
+
+        <div
+          class="error"
+          *ngIf="
+            registerForm.get('fullName')?.touched &&
+            registerForm.get('fullName')?.invalid
+          "
+        >
+
+          <span
+            *ngIf="
+              registerForm.get('fullName')?.errors?.['required']
+            "
+          >
+            ■ Full name is required
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Email -->
+      <div class="form-group">
+
+        <label for="email">
+          STUDENT / FACULTY EMAIL
+        </label>
+
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="e.g. name@university.edu"
+        />
+
+        <div
+          class="error"
+          *ngIf="
+            registerForm.get('email')?.touched &&
+            registerForm.get('email')?.invalid
+          "
+        >
+
+          <span
+            *ngIf="
+              registerForm.get('email')?.errors?.['required']
+            "
+          >
+            ■ Email address is required
+          </span>
+
+          <span
+            *ngIf="
+              registerForm.get('email')?.errors?.['email']
+            "
+          >
+            ■ Enter a valid email address
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Password -->
+      <div class="form-group">
+
+        <label for="password">
+          PASSWORD
+        </label>
+
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="Minimum 6 characters"
+        />
+
+        <div
+          class="error"
+          *ngIf="
+            registerForm.get('password')?.touched &&
+            registerForm.get('password')?.invalid
+          "
+        >
+
+          <span
+            *ngIf="
+              registerForm.get('password')?.errors?.['required']
+            "
+          >
+            ■ Password is required
+          </span>
+
+          <span
+            *ngIf="
+              registerForm.get('password')?.errors?.['minlength']
+            "
+          >
+            ■ Password must be at least 6 characters
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Phone -->
+      <div class="form-group">
+
+        <label for="phone">
+          PHONE NUMBER
+        </label>
+
+        <input
+          id="phone"
+          type="text"
+          formControlName="phone"
+          placeholder="e.g. 9876543210"
+          maxlength="10"
+        />
+
+        <div
+          class="error"
+          *ngIf="
+            registerForm.get('phone')?.touched &&
+            registerForm.get('phone')?.invalid
+          "
+        >
+
+          <span
+            *ngIf="
+              registerForm.get('phone')?.errors?.['required']
+            "
+          >
+            ■ Phone number is required
+          </span>
+
+          <span
+            *ngIf="
+              registerForm.get('phone')?.errors?.['pattern']
+            "
+          >
+            ■ Enter a valid 10-digit phone number
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Account Type -->
+      <div class="form-group">
+
+        <label for="role">
+          ACCOUNT TYPE
+        </label>
+
+        <select
+          id="role"
+          formControlName="role"
+        >
+
+          <option value="">
+            SELECT ACCOUNT TYPE
+          </option>
+
+          <option value="STUDENT">
+            STUDENT
+          </option>
+
+          <option value="FACULTY">
+            FACULTY
+          </option>
+
+          <option value="ADMIN">
+            ADMIN
+          </option>
+
+        </select>
+
+        <div
+          class="error"
+          *ngIf="
+            registerForm.get('role')?.touched &&
+            registerForm.get('role')?.invalid
+          "
+        >
+
+          <span
+            *ngIf="
+              registerForm.get('role')?.errors?.['required']
+            "
+          >
+            ■ Account type is required
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Register Button -->
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid || loading"
+      >
+        {{
+          loading
+            ? 'CREATING ACCOUNT...'
+            : 'CREATE QUAD ACCOUNT →'
+        }}
+      </button>
+
+    </form>
+
+
+    <!-- Login Footer -->
+    <div class="card-footer">
+
+      <p class="register-text">
+
+        ALREADY HAVE AN ACCOUNT?
+
+        <a routerLink="/login">
+          SIGN IN
+        </a>
+
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- Page Footer -->
+  <div class="page-footer">
+
+    <span>QUAD · v0.4 · REGISTER</span>
+
+    <span>Spring Semester 2026</span>
+
+  </div>
+
+</div>

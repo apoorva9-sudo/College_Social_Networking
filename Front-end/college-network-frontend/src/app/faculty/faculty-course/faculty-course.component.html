@@ -1,0 +1,18 @@
+<div>
+  <h1>My Course</h1>
+
+  <p *ngIf="loading">
+    Loading course...
+  </p>
+
+  <div *ngIf="!loading && course">
+    <h2>{{ course.courseCode }}</h2>
+    <h3>{{ course.courseName }}</h3>
+    <p>{{ course.description }}</p>
+    <p>Faculty: {{ course.facultyName }}</p>
+  </div>
+
+  <p *ngIf="errorMessage">
+    {{ errorMessage }}
+  </p>
+</div>

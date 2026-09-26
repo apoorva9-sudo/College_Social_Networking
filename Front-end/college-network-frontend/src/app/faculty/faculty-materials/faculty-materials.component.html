@@ -1,0 +1,254 @@
+<div class="materials-page">
+
+  <header class="page-header">
+
+    <div>
+
+      <div class="eyebrow">
+        FACULTY · MATERIALS
+      </div>
+
+      <h1>Materials</h1>
+
+    </div>
+
+    <div
+      class="course-badge"
+      *ngIf="course">
+
+      {{ course.courseCode }}
+      ·
+      {{ course.courseName }}
+
+    </div>
+
+  </header>
+
+
+  <!-- ERROR -->
+
+  <div
+    class="message error"
+    *ngIf="errorMessage">
+
+    ■ {{ errorMessage }}
+
+  </div>
+
+
+  <!-- SUCCESS -->
+
+  <div
+    class="message success"
+    *ngIf="successMessage">
+
+    ■ {{ successMessage }}
+
+  </div>
+
+
+  <main class="materials-layout">
+
+
+    <!-- UPLOAD -->
+
+    <section class="upload-panel">
+
+      <div class="panel-header">
+
+        <span>
+          <i class="marker red"></i>
+          Upload Material
+        </span>
+
+        <small>
+          FACULTY
+        </small>
+
+      </div>
+
+
+      <div class="form-body">
+
+        <label>
+          TITLE
+        </label>
+
+        <input
+          type="text"
+          [(ngModel)]="title"
+          placeholder="e.g. Unit 1 — Processes">
+
+
+        <label>
+          DESCRIPTION
+        </label>
+
+        <textarea
+          [(ngModel)]="description"
+          rows="4"
+          placeholder="Optional description">
+        </textarea>
+
+
+        <label>
+          VISIBILITY
+        </label>
+
+        <select
+          [(ngModel)]="visibility">
+
+          <option value="CLASS">
+            CLASS
+          </option>
+
+          <option value="PUBLIC">
+            PUBLIC
+          </option>
+
+          <option value="PRIVATE">
+            PRIVATE
+          </option>
+
+        </select>
+
+
+        <label>
+          FILE
+        </label>
+
+        <label class="file-picker">
+
+          <input
+            type="file"
+            (change)="onFileSelected($event)">
+
+          <span *ngIf="!selectedFile">
+            SELECT FILE
+          </span>
+
+          <span *ngIf="selectedFile">
+            {{ selectedFile.name }}
+          </span>
+
+        </label>
+
+
+        <button
+          class="upload-button"
+          (click)="upload()"
+          [disabled]="uploading">
+
+          <span *ngIf="!uploading">
+            UPLOAD MATERIAL
+          </span>
+
+          <span *ngIf="uploading">
+            UPLOADING...
+          </span>
+
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- MATERIAL LIST -->
+
+    <section class="materials-panel">
+
+      <div class="panel-header">
+
+        <span>
+          <i class="marker gold"></i>
+          Your Materials
+        </span>
+
+        <small>
+          {{ materials.length | number:'2.0-0' }} FILES
+        </small>
+
+      </div>
+
+
+      <div
+        *ngIf="loading"
+        class="empty">
+
+        LOADING MATERIALS...
+
+      </div>
+
+
+      <div
+        *ngIf="!loading && materials.length === 0"
+        class="empty">
+
+        NO MATERIALS UPLOADED YET
+
+      </div>
+
+
+      <div
+        class="material-item"
+        *ngFor="let material of materials">
+
+        <div class="material-info">
+
+          <div class="file-type">
+            {{ material.fileType || 'FILE' }}
+          </div>
+
+          <div>
+
+            <h3>
+              {{ material.title }}
+            </h3>
+
+            <p>
+              {{ material.description || 'No description' }}
+            </p>
+
+            <div class="material-meta">
+
+              {{ material.courseCode }}
+
+              ·
+
+              {{ material.visibility }}
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="material-actions">
+
+          <a
+            *ngIf="material.fileUrl"
+            [href]="material.fileUrl"
+            target="_blank">
+
+            OPEN
+
+          </a>
+
+          <button
+            (click)="deleteMaterial(material)">
+
+            DELETE
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>

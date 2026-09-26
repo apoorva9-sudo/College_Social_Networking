@@ -1,0 +1,307 @@
+
+<div class="faculty-page">
+
+  <!-- HEADER -->
+
+  <header class="page-header">
+
+    <div>
+      <div class="eyebrow">
+        FACULTY PORTAL
+      </div>
+
+      <h1>Dashboard</h1>
+    </div>
+
+    <div class="header-meta">
+      <span>TERM · SPRING '26</span>
+    </div>
+
+  </header>
+
+
+  <!-- ERROR -->
+
+  <div
+    class="error-box"
+    *ngIf="errorMessage">
+
+    <span>■</span>
+
+    {{ errorMessage }}
+
+  </div>
+
+
+  <!-- LOADING -->
+
+  <div
+    class="loading-state"
+    *ngIf="loading">
+
+    Loading faculty dashboard...
+
+  </div>
+
+
+  <!-- CONTENT -->
+
+  <main
+    *ngIf="!loading && course"
+    class="dashboard-content">
+
+
+    <!-- STAT CARDS -->
+
+    <section class="stats-grid">
+
+      <div class="stat-card accent-red">
+
+        <span class="stat-label">
+          ASSIGNED COURSE
+        </span>
+
+        <strong>
+          {{ course.courseCode }}
+        </strong>
+
+        <p>
+          {{ course.courseName }}
+        </p>
+
+      </div>
+
+
+      <div class="stat-card accent-green">
+
+        <span class="stat-label">
+          MATERIALS
+        </span>
+
+        <strong>
+          {{ materials.length | number:'2.0-0' }}
+        </strong>
+
+        <p>
+          uploaded by you
+        </p>
+
+      </div>
+
+
+      <div class="stat-card accent-gold">
+
+        <span class="stat-label">
+          STUDENTS
+        </span>
+
+        <strong>
+          {{ students.length | number:'2.0-0' }}
+        </strong>
+
+        <p>
+          enrolled in course
+        </p>
+
+      </div>
+
+
+      <div class="stat-card accent-blue">
+
+        <span class="stat-label">
+          ACCESS
+        </span>
+
+        <strong>
+          FACULTY
+        </strong>
+
+        <p>
+          Spring Semester 2026
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- MAIN GRID -->
+
+    <section class="main-grid">
+
+
+      <!-- COURSE -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+            <span class="panel-marker red"></span>
+            My Course
+          </div>
+
+          <a
+            routerLink="/faculty/course"
+            class="panel-link">
+
+            VIEW
+
+          </a>
+
+        </div>
+
+
+        <div class="course-card">
+
+          <div class="course-code">
+            {{ course.courseCode }}
+          </div>
+
+          <h2>
+            {{ course.courseName }}
+          </h2>
+
+          <p>
+            {{ course.description || 'No course description available.' }}
+          </p>
+
+          <div class="course-meta">
+
+            <span>
+              FACULTY
+            </span>
+
+            <strong>
+              {{ course.facultyName }}
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- RECENT MATERIALS -->
+
+      <div class="panel">
+
+        <div class="panel-header">
+
+          <div>
+            <span class="panel-marker gold"></span>
+            Recent Materials
+          </div>
+
+          <a
+            routerLink="/faculty/materials"
+            class="panel-link">
+
+            VIEW ALL
+
+          </a>
+
+        </div>
+
+
+        <div
+          class="material-list"
+          *ngIf="recentMaterials.length > 0">
+
+          <div
+            class="material-row"
+            *ngFor="let material of recentMaterials">
+
+            <div>
+
+              <strong>
+                {{ material.title }}
+              </strong>
+
+              <small>
+                {{ material.fileType || 'FILE' }}
+              </small>
+
+            </div>
+
+            <span class="visibility">
+              {{ material.visibility }}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div
+          class="empty-state"
+          *ngIf="recentMaterials.length === 0">
+
+          NO MATERIALS UPLOADED YET
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STUDENTS -->
+
+    <section class="panel students-panel">
+
+      <div class="panel-header">
+
+        <div>
+          <span class="panel-marker green"></span>
+          Enrolled Students
+        </div>
+
+        <a
+          routerLink="/faculty/students"
+          class="panel-link">
+
+          VIEW STUDENTS
+
+        </a>
+
+      </div>
+
+
+      <div class="student-strip">
+
+        <div class="student-summary">
+
+          <strong>
+            {{ students.length | number:'2.0-0' }}
+          </strong>
+
+          <span>
+            STUDENTS ENROLLED
+          </span>
+
+        </div>
+
+
+        <div
+          class="student-names"
+          *ngIf="students.length > 0">
+
+          <span
+            *ngFor="let student of students.slice(0, 5)">
+
+            {{ student.studentName }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+</div>

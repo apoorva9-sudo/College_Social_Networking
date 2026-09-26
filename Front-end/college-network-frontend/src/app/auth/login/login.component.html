@@ -1,0 +1,110 @@
+
+  <div class="login-page">
+
+    <div class="login-card">
+
+      <!-- Logo Header -->
+      <div class="logo">
+        <div class="logo-mark">
+          <span></span><span></span>
+          <span></span><span></span>
+        </div>
+        <div class="logo-text">
+          <span class="brand-name">Quad</span>
+          <span class="brand-sub">COLLEGE / NETWORK</span>
+        </div>
+      </div>
+
+      <!-- Main Heading -->
+      <div class="card-header">
+        <h1>Welcome back</h1>
+        <p class="subtitle">Log in to access your campus dashboard</p>
+      </div>
+
+      <!-- Login Form -->
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">STUDENT / FACULTY EMAIL</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            placeholder="e.g. name@university.edu"
+          />
+
+          <div
+            class="error"
+            *ngIf="
+              loginForm.get('email')?.touched &&
+              loginForm.get('email')?.invalid
+            "
+          >
+            <span *ngIf="loginForm.get('email')?.errors?.['required']">
+              ■ Email address is required
+            </span>
+            <span *ngIf="loginForm.get('email')?.errors?.['email']">
+              ■ Enter a valid email address
+            </span>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+          <label for="password">PASSWORD</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="••••••••••••"
+          />
+
+          <div
+            class="error"
+            *ngIf="
+              loginForm.get('password')?.touched &&
+              loginForm.get('password')?.invalid
+            "
+          >
+            <span *ngIf="loginForm.get('password')?.errors?.['required']">
+              ■ Password is required
+            </span>
+            <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
+              ■ Password must be at least 6 characters
+            </span>
+          </div>
+        </div>
+
+        <!-- Backend error -->
+        <div class="server-error" *ngIf="errorMessage">
+          ■ {{ errorMessage }}
+        </div>
+
+        <!-- Login button -->
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid || loading"
+        >
+          {{ loading ? 'AUTHENTICATING...' : 'SIGN IN TO QUAD →' }}
+        </button>
+
+      </form>
+
+      <!-- Footer / Registration Link -->
+      <div class="card-footer">
+        <p class="register-text">
+          DON'T HAVE AN ACCOUNT?
+          <a routerLink="/register">CREATE ACCOUNT</a>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Page Footer Stamp -->
+    <div class="page-footer">
+      <span>QUAD · v0.4 · AUTH</span>
+      <span>Spring Semester 2026</span>
+    </div>
+
+  </div>

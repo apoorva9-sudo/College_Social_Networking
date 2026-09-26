@@ -1,0 +1,103 @@
+<div class="students-page">
+
+  <header class="page-header">
+
+    <div>
+
+      <div class="eyebrow">
+        FACULTY · COURSE ROSTER
+      </div>
+
+      <h1>Students</h1>
+
+    </div>
+
+    <div
+      class="course-badge"
+      *ngIf="course">
+
+      {{ course.courseCode }}
+      ·
+      {{ course.courseName }}
+
+    </div>
+
+  </header>
+
+
+  <div
+    class="error"
+    *ngIf="errorMessage">
+
+    ■ {{ errorMessage }}
+
+  </div>
+
+
+  <main class="content">
+
+    <section class="roster-panel">
+
+      <div class="panel-header">
+
+        <span>
+          <i></i>
+          Enrolled Students
+        </span>
+
+        <small>
+          {{ students.length | number:'2.0-0' }} STUDENTS
+        </small>
+
+      </div>
+
+
+      <div
+        class="loading"
+        *ngIf="loading">
+
+        LOADING ROSTER...
+
+      </div>
+
+
+      <div
+        class="empty"
+        *ngIf="!loading && students.length === 0">
+
+        NO STUDENTS ARE ENROLLED IN THIS COURSE.
+
+      </div>
+
+
+      <div
+        class="student"
+        *ngFor="let student of students">
+
+        <div class="student-number">
+          {{ student.studentId }}
+        </div>
+
+        <div class="student-details">
+
+          <h2>
+            {{ student.studentName }}
+          </h2>
+
+          <span>
+            {{ student.email }}
+          </span>
+
+        </div>
+
+        <div class="student-role">
+          STUDENT
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>

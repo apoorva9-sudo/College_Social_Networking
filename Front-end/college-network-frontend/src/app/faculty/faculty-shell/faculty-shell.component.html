@@ -1,0 +1,89 @@
+<div class="faculty-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="faculty-sidebar">
+
+    <div class="sidebar-brand">
+      <div class="brand-small">FACULTY</div>
+      <div class="brand-title">PORTAL</div>
+    </div>
+
+
+    <nav class="sidebar-nav">
+
+      <a
+  [routerLink]="['/faculty/dashboard']"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="nav-item">
+
+  <span class="nav-icon">■</span>
+  <span>Dashboard</span>
+
+</a>
+
+
+      <a
+        routerLink="/faculty/course"
+        routerLinkActive="active"
+        class="nav-item">
+
+        <span class="nav-icon">■</span>
+        <span>My Course</span>
+
+      </a>
+
+
+      <a
+        routerLink="/faculty/materials"
+        routerLinkActive="active"
+        class="nav-item">
+
+        <span class="nav-icon">■</span>
+        <span>Materials</span>
+
+      </a>
+
+
+      <a
+        routerLink="/faculty/students"
+        routerLinkActive="active"
+        class="nav-item">
+
+        <span class="nav-icon">■</span>
+        <span>Students</span>
+
+      </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+      <div class="semester">
+        SPRING '26
+      </div>
+
+      <button
+        type="button"
+        class="logout-button"
+        (click)="logout()">
+
+        <span>↪</span>
+        LOGOUT
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="faculty-main">
+
+    <router-outlet></router-outlet>
+
+  </main>
+
+</div>
